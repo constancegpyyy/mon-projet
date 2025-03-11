@@ -1,13 +1,9 @@
-const API_URL = "https://monhistoireunique.com/wp-json/wp/v2/posts";
+const API_URL = "https://monhistoireunique.com/wp-json/wp/v2/posts?_embed&per_page=5";
 
-/**
- * Fonction pour récupérer les articles WordPress via l'API REST
- */
-export async function getPosts() {
+export async function getPosts(page = 1) {
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(`${API_URL}&page=${page}`);
 
-    // Vérifier si la requête est réussie
     if (!response.ok) {
       throw new Error(`Erreur HTTP : ${response.status}`);
     }
